@@ -1,0 +1,8 @@
+/home/lavinia/Documentos/C#/bin/Debug/netcoreapp1.1/C#.deps.json
+/home/lavinia/Documentos/C#/bin/Debug/netcoreapp1.1/C#.runtimeconfig.json
+/home/lavinia/Documentos/C#/bin/Debug/netcoreapp1.1/C#.runtimeconfig.dev.json
+/home/lavinia/Documentos/C#/bin/Debug/netcoreapp1.1/C#.dll
+/home/lavinia/Documentos/C#/bin/Debug/netcoreapp1.1/C#.pdb
+/home/lavinia/Documentos/C#/obj/Debug/netcoreapp1.1/C#.AssemblyInfo.cs
+/home/lavinia/Documentos/C#/obj/Debug/netcoreapp1.1/C#.dll
+/home/lavinia/Documentos/C#/obj/Debug/netcoreapp1.1/C#.pdb
