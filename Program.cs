@@ -19,7 +19,8 @@ namespace C_
             string RT = toBinary(Console.ReadLine());
             string constante = "000000000000";
             string resultBin = op + regDEST + RS + RT + constante;
-            Console.WriteLine("O resultado é: {0}", resultBin);
+            int hex = Convert.ToInt32(resultBin,2);
+            Console.WriteLine("O resultado é: {0} {1:X}", resultBin, hex);
             Console.WriteLine(resultBin.Length);
         }
     }
