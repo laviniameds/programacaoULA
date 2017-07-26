@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace C_
 {
@@ -21,7 +22,9 @@ namespace C_
             string resultBin = op + regDEST + RS + RT + constante;
             int hex = Convert.ToInt32(resultBin,2);
             Console.WriteLine("O resultado é: {0} {1:X}", resultBin, hex);
-            Console.WriteLine(resultBin.Length);
+            Console.ReadKey();
+
+            string nomeArquivo = @"/home/lavinia/Documentos/ULA/fatorial.txt";
         }
     }
 }
