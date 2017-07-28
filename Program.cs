@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace C_
@@ -13,45 +14,69 @@ namespace C_
         }
         static void Main(string[] args)
         {        
-            string[] lines = File.ReadAllLines(@"fat.txt");
-            foreach (string line in lines)
+            string[] linesArq = File.ReadAllLines(@"fat.txt");
+            List<string> listArqHex = new List<string>();
+            foreach (string line in linesArq)
             {
                 string[] comandos = line.Split(' ');
                 string op = toBinary(comandos[0]);
                 string regDEST = toBinary(comandos[1]);
-                
-
+                string RS = toBinary(comandos[2]);
+                string RT = toBinary(comandos[3]);
+                string constante = toBinaryConst(comandos[4]);
+                string resultBin = op + regDEST + RS + RT + constante;
+                int hex = Convert.ToInt32(resultBin,2);
+                string linhaHex = hex.ToString("X");
+                listArqHex.Add(linhaHex);
             }
-
-            //Console.WriteLine("Digite a operação: \n0 - AND \n1 - OR\n2 - XOR\n3 - NAND\n4 - SOMA INT\n5 - SOMA NAT\n6 - SUBTRAIR\n7 - DESL ESQ\n8 - DESL DIR\n9 - DESL DIR A\n10 - ROLL LEFT\n11 - COMPARADOR\n12 - SOMA CONSTANTE\n29 - BNE\n30 - BEQ\n31 - JMP");
-            //string op = toBinary(Console.ReadLine());
-            //Console.WriteLine("Digite o numero correspondente ao regDEST Ex: 1, 2 .. 32");
-            //string regDEST = toBinary(Console.ReadLine());
-            Console.WriteLine("Digite o numero correspondente ao RS Ex: 1, 2 .. 32");
-            string RS = toBinary(Console.ReadLine());
-            Console.WriteLine("Digite o numero correspondente ao RT Ex: 1, 2 .. 32");
-            string RT = toBinary(Console.ReadLine());
-            Console.WriteLine("Digite o numero correspondente à constante Ex: 1, 2 .. 32");
-            string constante = toBinaryConst(Console.ReadLine());
-            string resultBin = op + regDEST + RS + RT + constante;
-            int hex = Convert.ToInt32(resultBin,2);
-            Console.WriteLine("O resultado é: {0} {1:X}", resultBin, hex);
-            Console.WriteLine(resultBin.Length);
+            int cont = 0;
+            int cT = 1;
+            string[] texto = new string[listArqHex.Count];
+            texto[0] = "v2.0 raw";
             
-            /*int num, x, temp; //declara o as variaveis de numero e auxiliar x e temp
-            int resultado = 1; //resultado do fatorial
-            num = int.Parse(Console.ReadLine());//recebe o numero 
-            while (num != 0) { //enquanto numero for diferente de zero
-                x = num; 
-                temp = 0; // temp = 0
-                while (x != 0) { //enquanto x for diferente de zero
-                    temp = temp + resultado; //temp é somado com o resultado
-                    x = x - 1; // auxiliar é diminuido em 1
+            if(listArqHex.Count > 7){
+                for(int i=0;i<listArqHex.Count;i++){
+                    if(cont<8){
+                        texto[cT] += listArqHex[i] + " ";
+                    }
+                    else{
+                        cT++;
+                        cont = -1;
+                        i--;
+                    }
+                    cont++;
                 }
-                resultado = temp; //resultado é igual ao temporario
-                num = num - 1; //o numero é diminuído em 1
             }
-            Console.WriteLine("resultado: {0}"  ,resultado); //escreve o resultado*/
+            else{
+                for(int i=0;i<listArqHex.Count;i++)
+                    texto[cT] += listArqHex[i] + " ";
+            }
+            string[] textoF = new string[cT+1];
+            for(int i=0; i<textoF.Length; i++){
+                textoF[i] = texto[i];
+            }
+            File.WriteAllLines(@"fatLogisin.txt", textoF);
+            Console.WriteLine("Arquivo gerado!");
+
+            /*Console.WriteLine("Digite a operação: \n0 - AND \n1 - OR\n2 - XOR\n3 - NAND\n4 - SOMA INT
+            \n5 - SOMA NAT\n6 - SUBTRAIR\n7 - DESL ESQ\n8 - DESL DIR
+            \n9 - DESL DIR A\n10 - ROLL LEFT\n11 - COMPARADOR
+            \n12 - SOMA CONSTANTE\n29 - BNE\n30 - BEQ\n31 - JMP");*/
+            
+            /*int n = int.Parse(Console.ReadLine());
+            int fat = 1;
+            int i = 1;
+            while (i != n + 1){
+                int x = 1;
+                int aux = fat;
+                while (x != i){
+                    aux = aux + fat;
+                    x = x + 1;
+                }
+                i = i + 1;
+                fat = aux;
+            }
+            Console.WriteLine(fat);*/
         }
     }
 }
